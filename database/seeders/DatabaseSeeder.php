@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,10 +21,11 @@ class DatabaseSeeder extends Seeder
         User::truncate();
         Type::truncate();
         Project::truncate();
+        Skill::truncate();
         
         User::factory()->count(2)->create();
         Type::factory()->count(3)->create();
         Project::factory()->count(4)->create();
-            
+        Skill::factory()->count(5)->create();
     }
 }
