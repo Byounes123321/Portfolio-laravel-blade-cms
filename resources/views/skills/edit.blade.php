@@ -4,25 +4,25 @@
 
 <section class="w3-padding">
 
-    <h2>Edit Project</h2>
+    <h2>Edit Skill</h2>
 
-    <form method="post" action="/console/projects/edit/{{$project->id}}" novalidate class="w3-margin-bottom">
+    <form method="post" action="/console/skills/edit/{{$skill->id}}" novalidate class="w3-margin-bottom">
 
         @csrf
 
         <div class="w3-margin-bottom">
-            <label for="title">Title:</label>
-            <input type="title" name="title" id="title" value="{{old('title', $project->title)}}" required>
+            <label for="name">Name:</label>
+            <input type="name" name="name" id="name" value="{{old('name', $skill->name)}}" required>
             
-            @if ($errors->first('title'))
+            @if ($errors->first('name'))
                 <br>
-                <span class="w3-text-red">{{$errors->first('title')}}</span>
+                <span class="w3-text-red">{{$errors->first('name')}}</span>
             @endif
         </div>
 
         <div class="w3-margin-bottom">
             <label for="url">URL:</label>
-            <input type="url" name="url" id="url" value="{{old('url', $project->url)}}">
+            <input type="url" name="url" id="url" value="{{old('url', $skill->url)}}">
 
             @if ($errors->first('url'))
                 <br>
@@ -31,47 +31,20 @@
         </div>
 
         <div class="w3-margin-bottom">
-            <label for="slug">Slug:</label>
-            <input type="text" name="slug" id="slug" value="{{old('slug', $project->slug)}}" required>
+            <label for="percent">Percent:</label>
+            <input type="number" name="percent" id="percent" value="{{old('percent', $skill->percent)}}" required>
 
-            @if ($errors->first('slug'))
+            @if ($errors->first('percent'))
                 <br>
-                <span class="w3-text-red">{{$errors->first('slug')}}</span>
+                <span class="w3-text-red">{{$errors->first('percent')}}</span>
             @endif
         </div>
 
-        <div class="w3-margin-bottom">
-            <label for="content">Content:</label>
-            <textarea name="content" id="content" required>{{old('content', $project->content)}}</textarea>
-
-            @if ($errors->first('content'))
-                <br>
-                <span class="w3-text-red">{{$errors->first('content')}}</span>
-            @endif
-        </div>
-
-        <div class="w3-margin-bottom">
-            <label for="type_id">Type:</label>
-            <select name="type_id" id="type_id">
-                <option></option>
-                @foreach($types as $type)
-                    <option value="{{$type->id}}"
-                        {{$type->id == old('type_id', $project->type_id) ? 'selected' : ''}}>
-                        {{$type->title}}
-                    </option>
-                @endforeach
-            </select>
-            @if ($errors->first('type_id'))
-                <br>
-                <span class="w3-text-red">{{$errors->first('type_id')}}</span>
-            @endif
-        </div>
-
-        <button type="submit" class="w3-button w3-green">Edit Project</button>
+        <button type="submit" class="w3-button w3-green">Edit Skill</button>
 
     </form>
 
-    <a href="/console/projects/list">Back to Project List</a>
+    <a href="/console/skills/list">Back to skill List</a>
 
 </section>
 

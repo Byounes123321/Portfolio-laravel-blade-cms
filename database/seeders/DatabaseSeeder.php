@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Education;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Project;
@@ -27,5 +28,6 @@ class DatabaseSeeder extends Seeder
         Type::factory()->count(3)->create();
         Project::factory()->count(4)->create();
         Skill::factory()->count(5)->create();
+        Education::factory()->count(2)->create();
     }
 }

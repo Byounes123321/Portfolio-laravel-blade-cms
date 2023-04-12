@@ -4,15 +4,15 @@
 
 <section class="w3-padding">
 
-    <h2>Project Image</h2>
+    <h2>Education Image</h2>
 
     <div class="w3-margin-bottom">
-        @if($project->image)
-            <img src="{{asset('storage/'.$project->image)}}" width="200">
+        @if($education->image)
+            <img src="{{asset('storage/'.$education->image)}}" width="100">
         @endif
     </div>
 
-    <form method="post" action="/console/projects/image/{{$project->id}}" novalidate class="w3-margin-bottom" enctype="multipart/form-data">
+    <form method="post" action="/console/education/image/{{$education->id}}" novalidate class="w3-margin-bottom" enctype="multipart/form-data">
 
         @csrf
 
@@ -30,7 +30,7 @@
 
     </form>
 
-    <a href="/console/projects/list">Back to Project List</a>
+    <a href="/console/education/list">Back to education List</a>
 
 </section>
 

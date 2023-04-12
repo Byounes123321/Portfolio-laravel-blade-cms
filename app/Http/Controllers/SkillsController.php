@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skill;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class SkillsController extends Controller
@@ -22,13 +25,16 @@ class SkillsController extends Controller
     
     public function add()
     {
-
         $attributes = request()->validate([
             'name' => 'required',
+            'percent' => 'nullable',
+            'url' => 'nullable|url',
         ]);
 
         $skill = new Skill();
         $skill->name = $attributes['name'];
+        $skill->percent = $attributes['percent'];
+        $skill->url = $attributes['url'];
         $skill->save();
 
         return redirect('/console/skills/list')
@@ -47,9 +53,13 @@ class SkillsController extends Controller
 
         $attributes = request()->validate([
             'name' => 'required',
+            'percent' => 'nullable',
+            'url' => 'nullable|url',
         ]);
 
         $skill->name = $attributes['name'];
+        $skill->percent = $attributes['percent'];
+        $skill->url = $attributes['url'];
         $skill->save();
 
         return redirect('/console/skills/list')
@@ -64,4 +74,31 @@ class SkillsController extends Controller
             ->with('message', 'Skill has been deleted!');        
     }
 
+    public function logoForm(Skill $skill)
+    {
+        return view('skills.logo', [
+            'skill' => $skill,
+        ]);
+    }
+
+    public function logo(Skill $skill)
+    {
+
+        $attributes = request()->validate([
+            'logo' => 'required|image',
+        ]);
+
+        if($skill->logo)
+        {
+            Storage::delete($skill->logo);
+        }
+        
+        $path = request()->file('logo')->store('skill');
+
+        $skill->logo = $path;
+        $skill->save();
+        
+        return redirect('/console/skills/list')
+            ->with('message', 'Skill logo has been edited!');
+    }
 }

@@ -11,6 +11,7 @@
             <th></th>
             <th>Name</th>
             <th>Percent</th>
+            <th>url</th>
             <th></th>
             <th></th>
             <th></th>
@@ -18,16 +19,17 @@
         @foreach ($skills as $skill)
             <tr>
                 <td>
-                    @if ($skill->image)
-                        <img src="{{asset('storage/'.$skill->image)}}" width="200">
+                    @if ($skill->logo)
+                        <img src="{{asset('storage/'.$skill->logo)}}" width="100">
                     @endif
                 </td>
                 <td>{{$skill->name}}</td>
-                <td>{{$skill->type->url}}</td>   
+                <td>{{$skill->percent}}%</td>
+                <td>{{$skill->url}}</td>
                 <td>{{$skill->created_at->format('M j, Y')}}</td>
-                <td><a href="/console/skilsl/image/{{$project->id}}">Image</a></td>
-                <td><a href="/console/skills/edit/{{$project->id}}">Edit</a></td>
-                <td><a href="/console/skills/delete/{{$project->id}}">Delete</a></td>
+                <td><a href="/console/skills/logo/{{$skill->id}}">Logo</a></td>
+                <td><a href="/console/skills/edit/{{$skill->id}}">Edit</a></td>
+                <td><a href="/console/skills/delete/{{$skill->id}}">Delete</a></td>
             </tr>
         @endforeach
     </table>

@@ -29,6 +29,16 @@
                 <span class="w3-text-red">{{$errors->first('url')}}</span>
             @endif
         </div>
+        
+        <div class="w3-margin-bottom">
+            <label for="percent">percent:</label>
+            <input type="number" name="percent" id="percent" value="{{old('percent')}}">
+
+            @if ($errors->first('percent'))
+                <br>
+                <span class="w3-text-red">{{$errors->first('percent')}}</span>
+            @endif
+        </div>
 
         <button type="submit" class="w3-button w3-green">Add Skill</button>
 
