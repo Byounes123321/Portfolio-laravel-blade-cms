@@ -21,14 +21,8 @@ class Project extends Model
         'content',
         'slug',
         'image',
-        'type_id',
         'user_id',
     ];
-
-    public function type()
-    {
-        return $this->belongsTo(Type::class, 'type_id');
-    }
 
     public function user()
     {

@@ -19,7 +19,6 @@ class SkillsController extends Controller
 
     public function addForm()
     {
-
         return view('skills.add');
     }
     

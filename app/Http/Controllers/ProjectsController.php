@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\Project;
 use App\Models\Skill;
-use App\Models\Type;
 
 class ProjectsController extends Controller
 {
@@ -22,9 +21,7 @@ class ProjectsController extends Controller
 
     public function addForm()
     {
-        return view('projects.add', [
-            'types' => Type::all(),
-        ]);
+        return view('projects.add');
     }
     
     public function add()
@@ -35,7 +32,6 @@ class ProjectsController extends Controller
             'slug' => 'required|unique:projects|regex:/^[A-z\-]+$/',
             'url' => 'nullable|url',
             'content' => 'required',
-            'type_id' => 'required',
         ]);
 
         $project = new Project();
@@ -43,7 +39,6 @@ class ProjectsController extends Controller
         $project->slug = $attributes['slug'];
         $project->url = $attributes['url'];
         $project->content = $attributes['content'];
-        $project->type_id = $attributes['type_id'];
         $project->user_id = Auth::user()->id;
         $project->save();
 
@@ -58,7 +53,6 @@ class ProjectsController extends Controller
     {
         return view('projects.edit', [
             'project' => $project,
-            'types' => Type::all(),
             'skills' => Skill::all(),
         ]);
     }
@@ -75,7 +69,6 @@ class ProjectsController extends Controller
             ],
             'url' => 'nullable|url',
             'content' => 'required',
-            'type_id' => 'required',
             'skills' => 'nullable'
         ]);
 
@@ -83,11 +76,10 @@ class ProjectsController extends Controller
         $project->slug = $attributes['slug'];
         $project->url = $attributes['url']; 
         $project->content = $attributes['content'];
-        $project->type_id = $attributes['type_id'];
         $project->save();
 
          
-        
+
         if(isset($attributes['skills']))
         {
             $project->skills()->detach();

@@ -11,7 +11,6 @@
             <th></th>
             <th>Title</th>
             <th>Slug</th>
-            <th>Type</th>
             <th>Created</th>
             <th>Skills</th>
             <th></th>
@@ -31,7 +30,6 @@
                         {{$project->slug}}
                     </a>
                 </td>
-                <td>{{$project->type->title}}</td>
                 <td>{{$project->created_at->format('M j, Y')}}</td>
                 <td><ul>
                 @foreach($project->skills as $skill)
