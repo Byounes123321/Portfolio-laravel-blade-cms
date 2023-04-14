@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\Project;
+use App\Models\Skill;
 use App\Models\Type;
 
 class ProjectsController extends Controller
@@ -46,6 +47,9 @@ class ProjectsController extends Controller
         $project->user_id = Auth::user()->id;
         $project->save();
 
+       
+
+
         return redirect('/console/projects/list')
             ->with('message', 'Project has been added!');
     }
@@ -55,6 +59,7 @@ class ProjectsController extends Controller
         return view('projects.edit', [
             'project' => $project,
             'types' => Type::all(),
+            'skills' => Skill::all(),
         ]);
     }
 
@@ -71,14 +76,28 @@ class ProjectsController extends Controller
             'url' => 'nullable|url',
             'content' => 'required',
             'type_id' => 'required',
+            'skills' => 'nullable'
         ]);
 
         $project->title = $attributes['title'];
         $project->slug = $attributes['slug'];
-        $project->url = $attributes['url'];
+        $project->url = $attributes['url']; 
         $project->content = $attributes['content'];
         $project->type_id = $attributes['type_id'];
         $project->save();
+
+         
+        
+        if(isset($attributes['skills']))
+        {
+            $project->skills()->detach();
+
+            foreach($attributes['skills'] as $skill)
+            {
+                $project->skills()->attach($skill);
+            }
+
+        }else{ return redirect('/console/dashboard'); }
 
         return redirect('/console/projects/list')
             ->with('message', 'Project has been edited!');
@@ -124,6 +143,10 @@ class ProjectsController extends Controller
         
         return redirect('/console/projects/list')
             ->with('message', 'Project image has been edited!');
+    }
+
+    public function AssociateSkillsWithProject(){
+        
     }
     
 }

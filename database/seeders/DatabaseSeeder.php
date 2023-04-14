@@ -23,11 +23,15 @@ class DatabaseSeeder extends Seeder
         Type::truncate();
         Project::truncate();
         Skill::truncate();
+        Education::truncate();
         
         User::factory()->count(2)->create();
         Type::factory()->count(3)->create();
         Project::factory()->count(4)->create();
-        Skill::factory()->count(5)->create();
+        Skill::factory()->count(5)->create()->each(function($skill){
+            $projects = Project::all()->random(rand(1,2) )->pluck('id');
+            $skill->projects()->attach($projects);
+        });
         Education::factory()->count(2)->create();
     }
 }

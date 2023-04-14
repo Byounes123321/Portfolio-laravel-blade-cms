@@ -34,6 +34,16 @@ Route::get('/types', function(){
 Route::get('/skills', function(){
 
     $skills = Skill::orderBy('name')->get();
+
+    foreach($skills as $key => $skill)
+    {
+        $skills[$key]['projects'] = $skill->projects;
+
+        if($skill['image'])
+        {
+            $skills[$key]['image'] = env('APP_URL').'storage/'.$skill['image'];
+        }
+    }
     return $skills;
 
 });
@@ -53,6 +63,7 @@ Route::get('/projects', function(){
     {
         $projects[$key]['user'] = User::where('id', $project['user_id'])->first();
         $projects[$key]['type'] = Type::where('id', $project['type_id'])->first();
+        $projects[$key]['skills'] = $project->skills;
 
         if($project['image'])
         {

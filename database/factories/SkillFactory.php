@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class SkillFactory extends Factory
         return [
             'name' => $this->faker->word,
             'url' => $this->faker->url,
-            'percent' => $this->faker->numberBetween($int1 = 0, $int2 =100)
+            'percent' => $this->faker->numberBetween($int1 = 0, $int2 =100),
         ];
     }
 }
