@@ -6,8 +6,6 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\EducationController;
-use App\Http\Controllers\ProjectSkillController;
-use App\Models\ProjectSkill;
 use Illuminate\Support\Facades\Route;
 
 /*

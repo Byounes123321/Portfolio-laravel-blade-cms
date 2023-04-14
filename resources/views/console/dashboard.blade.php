@@ -8,7 +8,6 @@
         <li><a href="/console/projects/list">Manage Projects</a></li>
         <li><a href="/console/skills/list">Manage Skills</a></li>
         <li><a href="/console/education/list">Manage Education</a></li>
-        <li><a href="/console/projectsskills/list">Manage Association</a></li>
         <li><a href="/console/users/list">Manage Users</a></li>
         <li><a href="/console/logout">Log Out</a></li>
     </ul>
